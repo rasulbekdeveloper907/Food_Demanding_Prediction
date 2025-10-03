@@ -35,3 +35,5 @@
 2025-10-03 11:26:19,476 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-10-03 11:26:20,043 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-10-03 11:26:20,303 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-10-03 11:35:31,276 - INFO - CSV fayl o'qilmoqda: data_merged.csv
+2025-10-03 11:35:31,601 - INFO - Fayl muvaffaqiyatli o'qildi. Sat\u0131rlar soni: 489121 ustunlar soni: 10
