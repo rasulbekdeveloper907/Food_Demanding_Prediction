@@ -13,11 +13,11 @@ COPY requirements.txt .
 
 RUN python -m pip install --upgrade pip setuptools wheel
 
-# Install heavy dependencies first
+# Oldin og'ir dependencies
 RUN pip install numpy==1.26.4 pandas==2.0.3 scikit-learn==1.3.2 joblib==1.3.2
-RUN pip install numba==0.58.1 shap==0.62.3
+RUN pip install numba==0.58.1 shap==0.61.0
 
-# Install remaining packages
+# Qolgan dependencies
 RUN pip install --no-cache-dir -r requirements.txt --no-deps
 
 COPY demo/ demo/
