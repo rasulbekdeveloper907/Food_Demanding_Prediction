@@ -1,7 +1,7 @@
 # ============================
-# Base image (Python 3.10, slim)
+# Base image (Python 3.11, slim)
 # ============================
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # ============================
 # Environment variables
@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
     gcc \
     curl \
     git \
+    libgomp1 \
+    libblas-dev \
+    liblapack-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # ============================
@@ -29,9 +32,21 @@ WORKDIR /app
 # ============================
 COPY requirements.txt .
 
-# Upgrade pip and install dependencies
-RUN pip install --upgrade pip setuptools wheel \
-    && pip install --no-cache-dir -r requirements.txt
+# ============================
+# Upgrade pip, setuptools, wheel
+# ============================
+RUN python -m pip install --upgrade pip setuptools wheel
+
+# ============================
+# Install heavy dependencies separately to avoid build errors
+# ============================
+RUN pip install numpy==1.24.6 pandas==2.0.3 scikit-learn==1.3.2 joblib==1.3.2
+RUN pip install numba==0.57.4 shap==0.53.0
+
+# ============================
+# Install remaining requirements
+# ============================
+RUN pip install --no-cache-dir -r requirements.txt --no-deps
 
 # ============================
 # Copy project files
