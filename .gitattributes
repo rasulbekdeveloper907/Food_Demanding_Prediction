@@ -1,8 +1,18 @@
-# CSV fayllarni LFS ga yuklash
-*.csv filter=lfs diff=lfs merge=lfs -text
-# Rasm fayllarini LFS ga yuklash
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-# Maxsus diff uslublarini sozlash (agar kerak bo‘lsa)
-*.py diff=python
-*.md diff=markdown
+# ============================
+# ML models
+# ============================
+Models/*.joblib filter=lfs diff=lfs merge=lfs -text
+Models/*.pkl    filter=lfs diff=lfs merge=lfs -text
+
+# ============================
+# Large datasets only
+# ============================
+data/**/*.csv      filter=lfs diff=lfs merge=lfs -text
+raw_data/**/*.csv  filter=lfs diff=lfs merge=lfs -text
+part_*             filter=lfs diff=lfs merge=lfs -text
+
+# ============================
+# Optional: large numpy arrays
+# ============================
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.npz filter=lfs diff=lfs merge=lfs -text
