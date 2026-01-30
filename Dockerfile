@@ -1,5 +1,5 @@
 # ============================
-# Base image
+# Base image (Python 3.11 slim)
 # ============================
 FROM python:3.11-slim
 
@@ -38,10 +38,10 @@ COPY requirements.txt .
 RUN python -m pip install --upgrade pip setuptools wheel
 
 # ============================
-# Install heavy dependencies separately to avoid build errors
+# Install heavy dependencies separately
 # ============================
 RUN pip install numpy==1.26.4 pandas==2.0.3 scikit-learn==1.3.2 joblib==1.3.2
-RUN pip install numba==0.58.1 shap==0.60.0
+RUN pip install numba==0.58.1 shap==0.63.0
 
 # ============================
 # Install remaining requirements
