@@ -1,7 +1,7 @@
 # ============================
 # Base image (ML safe)
 # ============================
-FROM python:3.11-slim
+FROM python:3.10-slim
 
 # ============================
 # Environment variables
@@ -24,10 +24,12 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # ============================
-# Python dependencies
+# Copy requirements first (Docker layer caching)
 # ============================
 COPY requirements.txt .
-RUN pip install --upgrade pip \
+
+# Upgrade pip, setuptools, wheel first
+RUN pip install --upgrade pip setuptools wheel \
     && pip install --no-cache-dir -r requirements.txt
 
 # ============================
