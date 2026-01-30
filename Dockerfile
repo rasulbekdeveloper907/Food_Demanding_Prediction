@@ -1,5 +1,5 @@
 # ============================
-# Base image (ML safe)
+# Base image (Python 3.10, slim)
 # ============================
 FROM python:3.10-slim
 
@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     gcc \
     curl \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # ============================
@@ -24,11 +25,11 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # ============================
-# Copy requirements first (Docker layer caching)
+# Copy requirements first (for caching)
 # ============================
 COPY requirements.txt .
 
-# Upgrade pip, setuptools, wheel first
+# Upgrade pip and install dependencies
 RUN pip install --upgrade pip setuptools wheel \
     && pip install --no-cache-dir -r requirements.txt
 
@@ -39,17 +40,17 @@ COPY demo/ demo/
 COPY Models/ Models/
 
 # ============================
-# Security: non-root user
+# Security: create non-root user
 # ============================
 RUN useradd -m appuser
 USER appuser
 
 # ============================
-# Gradio port
+# Expose Gradio port
 # ============================
 EXPOSE 7860
 
 # ============================
-# Run Gradio app
+# Run the Gradio app
 # ============================
 CMD ["python", "demo/app.py"]

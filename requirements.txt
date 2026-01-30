@@ -1,9 +1,28 @@
-fastapi==0.100.0
-uvicorn==0.23.1
+# ============================
+# Web framework & server
+# ============================
+fastapi==0.95.2           # Gradio 3.x bilan mos
+uvicorn==0.22.0           # FastAPI server uchun
+
+# ============================
+# Gradio & HuggingFace Hub
+# ============================
 gradio==3.43.1
+gradio-client==0.5.0
+huggingface-hub==0.14.1   # eski HfFolder API bilan mos
+
+# ============================
+# Data processing & ML
+# ============================
 pandas==2.0.3
 numpy==1.23.5
 scikit-learn==1.3.2
 joblib==1.3.2
 shap==0.49.1
 numba==0.57.1
+
+# ============================
+# Compatibility fixes
+# ============================
+pydantic<2.0,>=1.10.9
+typing-extensions>=4.2.0
